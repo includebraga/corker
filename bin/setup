@@ -26,6 +26,8 @@ echo "[setup]: Installing elixir dependencies"
 MIX_ENV=$env mix local.hex --force
 MIX_ENV=$env mix local.rebar --force
 MIX_ENV=$env mix deps.get
+MIX_ENV=$env mix ecto.create
+MIX_ENV=$env mix ecto.migrate
 
 if [ ! -f .envrc ]; then
   cp .envrc.sample .envrc

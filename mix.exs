@@ -23,9 +23,12 @@ defmodule Corker.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:ecto, "~> 2.2"},
+      {:postgrex, ">= 0.0.0"},
       {:slack, "~> 0.14.0"},
       {:credo, "~> 0.10.0", only: [:dev, :test], runtime: false},
       {:ex_machina, "~> 2.2", only: :test},
+      {:faker, "~> 0.11", only: :test},
       {:mock, "~> 0.3.0", only: :test}
     ]
   end
