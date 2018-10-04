@@ -1,5 +1,5 @@
 defmodule Corker.ConfigTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   doctest Corker.Config
 
   alias Corker.Config
