@@ -1,20 +1,27 @@
 defmodule Corker.Application do
   @moduledoc false
+  @env Mix.env()
+
   use Application
 
   import Corker.Config, only: [config!: 2]
 
   def start(_type, _args) do
-    token = config!(:slack, :oauth_token)
     opts = [strategy: :one_for_one, name: Corker.Supervisor]
 
-    children = [
+    Supervisor.start_link(children(@env), opts)
+  end
+
+  defp children(:test), do: []
+
+  defp children(_) do
+    token = config!(:slack, :oauth_token)
+
+    [
       %{
         id: Slack.Bot,
         start: {Slack.Bot, :start_link, [Corker.Slack, [], token]}
       }
     ]
-
-    Supervisor.start_link(children, opts)
   end
 end
