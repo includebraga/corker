@@ -1,2 +1,1 @@
-export SLACK_CLIENT_ID="your-client-id"
-export SLACK_CLIENT_SECRET="your-client-secret"
+export SLACK_BOT_OAUTH_TOKEN="your-slack-bot-oauth-token"

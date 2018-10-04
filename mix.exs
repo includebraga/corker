@@ -15,13 +15,15 @@ defmodule Corker.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger],
+      mod: {Corker.Application, []}
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:slack, "~> 0.14.0"},
       {:credo, "~> 0.10.0", only: [:dev, :test], runtime: false},
       {:ex_machina, "~> 2.2", only: :test},
       {:mock, "~> 0.3.0", only: :test}
