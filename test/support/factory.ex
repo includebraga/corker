@@ -62,4 +62,16 @@ defmodule Corker.Factory do
       updated: 1_504_452_720
     }
   end
+
+  def slackbot_factory do
+    %{slack_user_factory() | id: "USLACKBOT"}
+  end
+
+  def slack_app_user_factory do
+    %{slack_user_factory() | is_app_user: true}
+  end
+
+  def slack_bot_user_factory do
+    %{slack_user_factory() | is_bot: true}
+  end
 end
