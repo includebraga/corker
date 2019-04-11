@@ -30,5 +30,25 @@ defmodule Corker.Services.ExtractUsersTest do
 
       assert Repo.aggregate(User, :count, :id) == 5
     end
+
+    test "ignores bot and app users" do
+      %{id: slack_id, name: username} = real_user = build(:slack_user)
+
+      slack_users =
+        Enum.into(
+          [
+            real_user,
+            build(:slack_app_user),
+            build(:slack_bot_user),
+            build(:slackbot)
+          ],
+          %{},
+          &{&1.id, &1}
+        )
+
+      ExtractUsers.perform(slack_users)
+
+      assert [%User{slack_id: ^slack_id, username: ^username}] = Repo.all(User)
+    end
   end
 end
