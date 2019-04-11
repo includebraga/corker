@@ -2,6 +2,7 @@ defmodule Corker.Factory do
   use ExMachina.Ecto, repo: Corker.Repo
 
   alias Corker.Accounts.User
+  alias Corker.Feedback.HighFive
 
   def user_factory do
     %User{
@@ -73,5 +74,13 @@ defmodule Corker.Factory do
 
   def slack_bot_user_factory do
     %{slack_user_factory() | is_bot: true}
+  end
+
+  def high_five_factory do
+    %HighFive{
+      reason: Faker.Lorem.sentence(),
+      sender_id: insert(:user).id,
+      receiver_id: insert(:user).id
+    }
   end
 end

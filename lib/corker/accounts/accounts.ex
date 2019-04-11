@@ -9,4 +9,12 @@ defmodule Corker.Accounts do
     |> User.changeset(attrs)
     |> Repo.insert()
   end
+
+  def exists_user?(username) do
+    query = from u in User, where: u.username == ^username
+
+    Repo.exists?(query)
+  end
+
+  def find_by(params), do: Repo.get_by(User, params)
 end

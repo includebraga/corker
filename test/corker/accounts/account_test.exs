@@ -36,4 +36,17 @@ defmodule Corker.AccountsTest do
       assert Repo.aggregate(User, :count, :id) == 1
     end
   end
+
+  describe "exists_user?/1" do
+    test "is true for an existent username" do
+      username = "mendes"
+      insert(:user, username: username)
+
+      assert Accounts.exists_user?(username)
+    end
+
+    test "is false for non-existent username" do
+      refute Accounts.exists_user?("fake-username")
+    end
+  end
 end
