@@ -1,7 +1,10 @@
 [
+  import_deps: [:ecto],
   inputs: [
+    "*.{.ex,exs}",
     "mix.exs",
-    "{config,lib,test,priv}/**/*.{ex,exs}",
+    "priv/*/seeds.exs",
+    "{config,lib,test}/**/*.{ex,exs}",
     "apps/*/mix.exs",
     "apps/*/{config,lib,test,priv}/**/*.{ex,exs}"
   ],
@@ -17,13 +20,11 @@
     create: :*,
     drop: :*,
     remove: :*,
-    modify: :*,
     field: :*,
-    belongs_to: :*,
     schema: :*,
     add: :*,
     rename: :*,
-    embeds_many: :*,
+    from: :*,
 
     # vex
     validates: :*,
@@ -32,7 +33,6 @@
     plug: :*,
 
     # phoenix
-    action_fallback: :*,
     pipe_through: :*,
     forward: :*,
     get: :*,
@@ -44,6 +44,13 @@
     pipeline: :*,
     scope: :*,
     socket: :*,
-    adapter: :*
+    adapter: :*,
+
+    # absinthe
+    import_types: :*,
+    object: :*,
+    field: :*,
+    arg: :*,
+    resolve: :*
   ]
 ]

@@ -1,0 +1,9 @@
+high_five:
+  created:
+    "Hell yeah! High five created! <@<%= receiver_id %>> has received <%= high_five_count %> high fives this week"
+
+error:
+  dm_received:
+    "Sorry mate, for the sake for transparency, do it in a public channel."
+  unknown_command:
+    "I'm sorry Dave, I'm afraid I can't do that."
