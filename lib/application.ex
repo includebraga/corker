@@ -25,5 +25,5 @@ defmodule Corker.Application do
     ] ++ base_children()
   end
 
-  defp base_children, do: [Corker.Repo]
+  defp base_children, do: [Corker.Repo, Corker.Web]
 end

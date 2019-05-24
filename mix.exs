@@ -29,7 +29,10 @@ defmodule Corker.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:slack, "~> 0.14.0"},
       {:timex, "~> 3.1"},
-      {:yaml_elixir, "~> 2.2"}
+      {:yaml_elixir, "~> 2.2"},
+      {:plug_cowboy, "~> 2.0"},
+      {:poison, "~> 3.0"},
+      {:tesla, "~> 1.2"}
     ] ++ deps(@env)
   end
 
