@@ -1,0 +1,6 @@
+{
+  "name": "Corker",
+  "description": "A Slack bot for praising your team.",
+  "repository": "https://github.com/includebraga/corker",
+  "keywords": ["elixir", "slack", "bot"]
+}
