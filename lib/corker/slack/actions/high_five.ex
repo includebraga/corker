@@ -32,11 +32,11 @@ defmodule Corker.Slack.Actions.HighFive do
       reason: reason
     })
 
-    one_week_ago = Timex.now() |> Timex.shift(weeks: -1)
+    beginning_of_week = Timex.now() |> Timex.beginning_of_week(:mon)
 
     high_five_count =
       receiver_id
-      |> Feedback.high_fives_since(one_week_ago)
+      |> Feedback.high_fives_since(beginning_of_week)
       |> length
 
     reply =
