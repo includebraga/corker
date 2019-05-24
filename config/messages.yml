@@ -1,6 +1,6 @@
 high_five:
   created:
-    "Hell yeah! High five created! <@<%= receiver_id %>> has received <%= high_five_count %> high fives this week"
+    "Hell yeah! High five created! <%= receiver_username %> has received <%= high_five_count %> high fives this week"
 
 error:
   dm_received:

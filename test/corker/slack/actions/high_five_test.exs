@@ -40,7 +40,7 @@ defmodule Corker.Slack.Actions.HighFiveTest do
 
       reply =
         Messages.t("high_five.created",
-          receiver_id: receiver.slack_id,
+          receiver_username: receiver.username,
           high_five_count: 2
         )
 

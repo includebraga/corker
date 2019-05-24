@@ -22,26 +22,30 @@ defmodule Corker.Slack.Actions.HighFive do
     end
   end
 
-  defp do_run(receiver: receiver, reason: reason, sender: sender) do
-    sender_id = Accounts.find_by(slack_id: sender).id
-    receiver_id = Accounts.find_by(slack_id: receiver).id
+  defp do_run(
+         receiver: receiver_slack_id,
+         reason: reason,
+         sender: sender_slack_id
+       ) do
+    sender = Accounts.find_by(slack_id: sender_slack_id)
+    receiver = Accounts.find_by(slack_id: receiver_slack_id)
 
     Feedback.create_high_five(%{
-      sender_id: sender_id,
-      receiver_id: receiver_id,
+      sender_id: sender.id,
+      receiver_id: receiver.id,
       reason: reason
     })
 
     beginning_of_week = Timex.now() |> Timex.beginning_of_week(:mon)
 
     high_five_count =
-      receiver_id
+      receiver.id
       |> Feedback.high_fives_since(beginning_of_week)
       |> length
 
     reply =
       Messages.t("high_five.created",
-        receiver_id: receiver,
+        receiver_username: receiver.username,
         high_five_count: high_five_count
       )
 
