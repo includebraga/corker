@@ -7,7 +7,7 @@ defmodule Corker.Slack.ActionsTest do
   }
 
   describe "parse/2" do
-    test "replies with error when receiving DMs" do
+    test "replies with error when receiving unknown DMs" do
       state = %{}
 
       response = Actions.parse(%{channel: "DIRECTMESSAGEID"}, state)

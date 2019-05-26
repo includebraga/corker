@@ -1,6 +1,8 @@
 high_five:
   created:
     "Hell yeah! High five created! <%= receiver_username %> has received <%= high_five_count %> high fives this week"
+  list:
+    "Sure thing. Here are your high fives since Monday:\n<%= high_fives %>"
 
 error:
   dm_received:
