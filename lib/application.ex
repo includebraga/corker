@@ -21,9 +21,10 @@ defmodule Corker.Application do
       %{
         id: Slack.Bot,
         start: {Slack.Bot, :start_link, [Corker.Slack, %{}, token]}
-      }
+      },
+      Corker.Web
     ] ++ base_children()
   end
 
-  defp base_children, do: [Corker.Repo, Corker.Web]
+  defp base_children, do: [Corker.Repo]
 end
