@@ -57,4 +57,4 @@ Trello board][trello]. All contributions **must** follow the [Code of
 Conduct][coc].
 
 [trello]: https://trello.com/b/lc3PDonO/%F0%9F%92%BB-corker
-[coc]: https://github.com/geometry-zsh/geometry/blob/master/CODE_OF_CONDUCT.md
+[coc]: https://github.com/includebraga/corker/blob/master/CODE_OF_CONDUCT.md
