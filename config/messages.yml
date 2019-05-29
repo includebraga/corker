@@ -3,6 +3,9 @@ high_five:
     "Hell yeah! High five created! <%= receiver_username %> has received <%= high_five_count %> high fives this week"
   list:
     "Sure thing. Here are your high fives since Monday:\n<%= high_fives %>"
+  monthly_stats:
+    sender: "The users with the most :heart: to give who are not afraid to show it! :\n<%= stats %>"
+    receiver: "These awesome people have been receiving the most :heart: this month:\n<%= stats %>"
 
 error:
   dm_received:

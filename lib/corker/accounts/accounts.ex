@@ -17,4 +17,6 @@ defmodule Corker.Accounts do
   end
 
   def find_by(params), do: Repo.get_by(User, params)
+
+  def all_users, do: Repo.all(User)
 end

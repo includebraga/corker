@@ -34,7 +34,7 @@ defmodule Corker.Slack.Actions.WeeklyList do
     |> Enum.map(fn high_five ->
       sender = Accounts.find_by(id: high_five.sender_id)
 
-      "* From: <@#{sender.slack_id}>: #{high_five.reason}"
+      "From: <@#{sender.slack_id}>: #{high_five.reason}"
     end)
     |> Enum.join("\n")
   end

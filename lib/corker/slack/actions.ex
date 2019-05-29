@@ -1,12 +1,18 @@
 defmodule Corker.Slack.Actions do
   alias Corker.Slack.Messages
 
-  @public_channel_actions [
-    __MODULE__.HighFive
+  @shared_actions [
+    __MODULE__.MonthlyStats
   ]
 
   @dm_actions [
     __MODULE__.WeeklyList
+    | @shared_actions
+  ]
+
+  @public_channel_actions [
+    __MODULE__.HighFive
+    | @shared_actions
   ]
 
   # we don't care about control-style messages,
