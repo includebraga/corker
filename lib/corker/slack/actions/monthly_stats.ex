@@ -26,7 +26,7 @@ defmodule Corker.Slack.Actions.MonthlyStats do
   end
 
   defp to_paragraph({sender_stats, receiver_stats}) do
-    {stats_to_str(receiver_stats), stats_to_str(sender_stats)}
+    {stats_to_str(sender_stats), stats_to_str(receiver_stats)}
   end
 
   defp stats_to_str(stats) do
