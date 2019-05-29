@@ -7,6 +7,12 @@ high_five:
     sender: "The users with the most :heart: to give who are not afraid to show it! :\n<%= stats %>"
     receiver: "These awesome people have been receiving the most :heart: this month:\n<%= stats %>"
 
+reports:
+  monthly:
+    prefix: "HEAR YE, HEAR YE! It is the time of the month to congratulate the most lovable people!"
+    receiver: "Users that are so awesome we keep high fiving them! :raised_hand:\n<%= stats %>"
+    sender: "Users have a lot of :heart: to give!\n<%= stats %>"
+
 error:
   dm_received:
     "Sorry mate, for the sake for transparency, do it in a public channel."

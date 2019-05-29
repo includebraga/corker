@@ -27,4 +27,10 @@ defmodule Corker.Slack do
   def handle_event(_message, _slack, state) do
     {:ok, state}
   end
+
+  def handle_info({:report, report, channel}, slack, state) do
+    send_message(report, channel, slack)
+
+    {:ok, state}
+  end
 end

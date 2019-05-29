@@ -32,7 +32,8 @@ defmodule Corker.MixProject do
       {:yaml_elixir, "~> 2.2"},
       {:plug_cowboy, "~> 2.0"},
       {:poison, "~> 3.0"},
-      {:tesla, "~> 1.2"}
+      {:tesla, "~> 1.2"},
+      {:quantum, "~> 2.3"}
     ] ++ deps(@env)
   end
 
