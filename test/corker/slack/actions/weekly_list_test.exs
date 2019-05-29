@@ -9,9 +9,15 @@ defmodule Corker.Slack.Actions.WeeklyListTest do
                Actions.WeeklyList.run(%{text: "just a command", user: "123"})
     end
 
-    test "returns a message with the reasons from this week's high fives" do
+    test "correctly formats the message with the weekly report" do
+      sender = insert(:user)
       receiver = insert(:user)
-      high_fives = insert_list(2, :high_five, receiver_id: receiver.id)
+
+      high_fives =
+        insert_list(2, :high_five,
+          receiver_id: receiver.id,
+          sender_id: sender.id
+        )
 
       {:reply, reply} =
         Actions.WeeklyList.run(%{
@@ -20,42 +26,13 @@ defmodule Corker.Slack.Actions.WeeklyListTest do
         })
 
       for high_five <- high_fives do
-        assert String.contains?(reply, high_five.reason)
+        assert String.contains?(
+                 reply,
+                 """
+                 From: <@#{sender.slack_id}>: #{high_five.reason}\
+                 """
+               )
       end
-    end
-
-    test "ignores old high fives" do
-      receiver = insert(:user)
-      two_weeks_ago = Timex.now() |> Timex.shift(weeks: -2)
-      new_high_five = insert(:high_five, receiver_id: receiver.id)
-
-      old_high_five =
-        insert(:high_five, receiver_id: receiver.id, inserted_at: two_weeks_ago)
-
-      {:reply, reply} =
-        Actions.WeeklyList.run(%{
-          text: "list my high fives",
-          user: receiver.slack_id
-        })
-
-      assert String.contains?(reply, new_high_five.reason)
-      refute String.contains?(reply, old_high_five.reason)
-    end
-
-    test "ignores other user's high fives" do
-      user = insert(:user)
-      another_user = insert(:user)
-      user_high_five = insert(:high_five, receiver_id: user.id)
-      other_high_five = insert(:high_five, receiver_id: another_user.id)
-
-      {:reply, reply} =
-        Actions.WeeklyList.run(%{
-          text: "list my high fives",
-          user: user.slack_id
-        })
-
-      assert String.contains?(reply, user_high_five.reason)
-      refute String.contains?(reply, other_high_five.reason)
     end
   end
 end
