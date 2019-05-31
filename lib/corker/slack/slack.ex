@@ -24,6 +24,12 @@ defmodule Corker.Slack do
     {:ok, state}
   end
 
+  def handle_event(%{type: "team_join", user: user}, _slack, state) do
+    Users.extract([user])
+
+    {:ok, state}
+  end
+
   def handle_event(_message, _slack, state) do
     {:ok, state}
   end
