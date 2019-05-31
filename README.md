@@ -1,10 +1,12 @@
 # Corker
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Build Status](https://travis-ci.com/includebraga/corker.svg?branch=master)](https://travis-ci.com/includebraga/corker)
 
 Corker is one astonishing boi.
 
 Giving feedback leads to a better workplace. Corker is a Slack bot that listens to your props to other Slack members and records them.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ![corker in action](docs/images/screenshot.png)
 

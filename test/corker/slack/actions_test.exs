@@ -10,7 +10,11 @@ defmodule Corker.Slack.ActionsTest do
     test "replies with error when receiving unknown DMs" do
       state = %{}
 
-      response = Actions.parse(%{channel: "DIRECTMESSAGEID"}, state)
+      response =
+        Actions.parse(
+          %{channel: "DIRECTMESSAGEID", text: "123", user: "abc"},
+          state
+        )
 
       assert {:reply, Messages.t("error.dm_received")} == response
     end
