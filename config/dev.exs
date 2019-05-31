@@ -7,4 +7,4 @@ config :corker, Corker.Repo,
   hostname: "localhost",
   pool_size: 10
 
-config :corker, :high_fives, self_fives: true
+config :corker, Corker.Slack.HighFives, self_fives: true

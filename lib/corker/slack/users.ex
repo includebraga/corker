@@ -1,6 +1,4 @@
 defmodule Corker.Slack.Users do
-  use Task
-
   alias Corker.Accounts
 
   @slackbot_id "USLACKBOT"

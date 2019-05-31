@@ -10,6 +10,10 @@ high_five:
     receiver_not_found: "Hm, it appears I can't high five <@<%= slack_id %>>. It's either a bot user or someone I don't know yet."
     self_five: "Now now, you know you shouldn't self five."
 
+private_high_five:
+  created:
+    "Oh boy! <%= sender_username %> just sent you a high five <%= reason %>"
+
 reports:
   monthly:
     prefix: "HEAR YE, HEAR YE! It is the time of the month to congratulate the most lovable people!"

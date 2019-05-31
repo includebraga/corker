@@ -71,7 +71,7 @@ defmodule Corker.Slack.Actions.HighFiveTest do
 
       assert {:reply, reply} == response
 
-      Application.put_env(:corker, :high_fives, [opts])
+      Application.put_env(:corker, :high_fives, opts)
     end
   end
 end

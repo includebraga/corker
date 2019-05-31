@@ -9,7 +9,6 @@ config :corker, :slack, oauth_token: {:system, "SLACK_BOT_OAUTH_TOKEN"}
 
 config :corker, Corker.Jobs.Report, channel: "#bottest"
 
-config :corker, :high_fives,
-  self_fives: false
+config :corker, Corker.Slack.HighFives, self_fives: false
 
 import_config "#{Mix.env()}.exs"

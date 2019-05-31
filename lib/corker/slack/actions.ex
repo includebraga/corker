@@ -6,7 +6,8 @@ defmodule Corker.Slack.Actions do
   ]
 
   @dm_actions [
-    __MODULE__.WeeklyList
+    __MODULE__.WeeklyList,
+    __MODULE__.PrivateHighFive
     | @shared_actions
   ]
 

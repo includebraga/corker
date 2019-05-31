@@ -1,4 +1,4 @@
-defmodule Corker.Slack.Actions.HighFive do
+defmodule Corker.Slack.Actions.PrivateHighFive do
   @cmd_regex ~r/((give|send) ((a high\s*five)|props)) to <@([^>]+)> (.*)/
 
   alias Corker.Slack.{
@@ -43,13 +43,24 @@ defmodule Corker.Slack.Actions.HighFive do
         {:reply, Messages.t("high_five.errors.self_five")}
 
       {:ok, high_five} ->
-        {:reply, high_five_data(high_five)}
+        receiver = Accounts.find_by(id: high_five.receiver_id)
+        sender = Accounts.find_by(id: high_five.sender_id)
+
+        [
+          {:send, receiver_slack_id, receiver_notification(sender, high_five)},
+          {:reply, sender_notification(receiver)}
+        ]
     end
   end
 
-  defp high_five_data(high_five) do
-    receiver = Accounts.find_by(id: high_five.receiver_id)
+  defp receiver_notification(sender, high_five) do
+    Messages.t("private_high_five.created",
+      sender_username: sender.username,
+      reason: high_five.reason
+    )
+  end
 
+  defp sender_notification(receiver) do
     beginning_of_week = Timex.now() |> Timex.beginning_of_week(:mon)
 
     high_five_count =

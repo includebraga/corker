@@ -14,11 +14,11 @@ defmodule Corker.Slack do
 
   def handle_event(%{type: "message"} = message, slack, state) do
     case Actions.parse(message, slack.me) do
-      {:reply, text} ->
-        send_message(text, message.channel, slack)
+      actions when is_list(actions) ->
+        for action <- actions, do: apply_action(action, message, slack)
 
-      :noreply ->
-        nil
+      action ->
+        apply_action(action, message, slack)
     end
 
     {:ok, state}
@@ -39,4 +39,12 @@ defmodule Corker.Slack do
 
     {:ok, state}
   end
+
+  defp apply_action({:send, target, text}, _message, slack),
+    do: send_message(text, target, slack)
+
+  defp apply_action({:reply, text}, message, slack),
+    do: send_message(text, message.channel, slack)
+
+  defp apply_action(:noreply, _, _), do: nil
 end
