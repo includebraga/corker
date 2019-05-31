@@ -6,3 +6,5 @@ config :corker, Corker.Repo,
   database: "corker_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :corker, :high_fives, self_fives: true

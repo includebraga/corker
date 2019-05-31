@@ -6,6 +6,9 @@ high_five:
   monthly_stats:
     sender: "The users with the most :heart: to give who are not afraid to show it! :\n<%= stats %>"
     receiver: "These awesome people have been receiving the most :heart: this month:\n<%= stats %>"
+  errors:
+    receiver_not_found: "Hm, it appears I can't high five <@<%= slack_id %>>. It's either a bot user or someone I don't know yet."
+    self_five: "Now now, you know you shouldn't self five."
 
 reports:
   monthly:

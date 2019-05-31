@@ -1,6 +1,8 @@
 defmodule Corker.Slack.Actions.HighFive do
   @cmd_regex ~r/((give|send) ((a high\s*five)|props)) to <@([^>]+)> (.*)/
 
+  @self_fives_allowed Application.get_env(:corker, :high_fives)[:self_fives]
+
   alias Corker.Slack.Messages
 
   alias Corker.{
@@ -30,6 +32,24 @@ defmodule Corker.Slack.Actions.HighFive do
     sender = Accounts.find_by(slack_id: sender_slack_id)
     receiver = Accounts.find_by(slack_id: receiver_slack_id)
 
+    cond do
+      is_nil(receiver) ->
+        msg =
+          Messages.t("high_five.errors.receiver_not_found",
+            slack_id: receiver_slack_id
+          )
+
+        {:reply, msg}
+
+      receiver_slack_id == sender_slack_id and not @self_fives_allowed ->
+        {:reply, Messages.t("high_five.errors.self_five")}
+
+      true ->
+        create_high_five(sender, receiver, reason)
+    end
+  end
+
+  defp create_high_five(sender, receiver, reason) do
     Feedback.create_high_five(%{
       sender_id: sender.id,
       receiver_id: receiver.id,

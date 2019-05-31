@@ -46,5 +46,32 @@ defmodule Corker.Slack.Actions.HighFiveTest do
 
       assert {:reply, reply} == response
     end
+
+    test "warns when the receiver isn't found" do
+      sender = insert(:user)
+      text = "give a high five to <@123> for being awesome"
+
+      response = HighFive.run(%{text: text, user: sender.slack_id})
+
+      reply = Messages.t("high_five.errors.receiver_not_found", slack_id: "123")
+
+      assert {:reply, reply} == response
+    end
+
+    test "prevents self fives when enabled" do
+      opts = Application.get_env(:corker, :high_fives)
+      Application.put_env(:corker, :high_fives, self_fives: false)
+
+      sender = insert(:user)
+      text = "give a high five to <@#{sender.slack_id}> for being awesome"
+
+      response = HighFive.run(%{text: text, user: sender.slack_id})
+
+      reply = Messages.t("high_five.errors.self_five")
+
+      assert {:reply, reply} == response
+
+      Application.put_env(:corker, :high_fives, [opts])
+    end
   end
 end
