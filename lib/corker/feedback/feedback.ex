@@ -17,4 +17,14 @@ defmodule Corker.Feedback do
 
     Repo.all(query)
   end
+
+  def high_fives_between(receiver_id, start_time, end_time) do
+    query =
+      from h in HighFive,
+        where:
+          h.receiver_id == ^receiver_id and h.inserted_at > ^start_time and
+            h.inserted_at <= ^end_time
+
+    Repo.all(query)
+  end
 end

@@ -4,19 +4,31 @@ defmodule Corker.Reports.Monthly do
     Feedback
   }
 
-  def generate do
-    users = Accounts.all_users()
+  def generate(opts \\ []) do
+    {start_date, end_date} = backdated_intervals(opts)
 
-    beginning_of_month = Timex.now() |> Timex.beginning_of_month()
-
-    users
-    |> high_five_count_since(beginning_of_month)
+    Accounts.all_users()
+    |> high_five_count_between(start_date, end_date)
     |> scrub_high_fives()
   end
 
-  defp high_five_count_since(users, date) do
+  defp backdated_intervals(opts) do
+    if Keyword.get(opts, :backdate, false) do
+      {
+        Timex.now() |> Timex.shift(months: -1) |> Timex.beginning_of_month(),
+        Timex.now() |> Timex.shift(months: -1) |> Timex.end_of_month()
+      }
+    else
+      {
+        Timex.now() |> Timex.beginning_of_month(),
+        Timex.now()
+      }
+    end
+  end
+
+  defp high_five_count_between(users, start_date, end_date) do
     Enum.reduce(users, {%{}, %{}}, fn u, {senders, receivers} ->
-      high_fives = Feedback.high_fives_since(u.id, date)
+      high_fives = Feedback.high_fives_between(u.id, start_date, end_date)
       new_receivers = Map.put(receivers, u.username, length(high_fives))
       new_senders = update_senders(senders, high_fives)
 

@@ -3,7 +3,7 @@ defmodule Corker.Reports.MonthlyTest do
 
   alias Corker.Reports.Monthly
 
-  describe "generate/0" do
+  describe "generate/1" do
     test "returns the leaderboards for this month" do
       top_sender = insert(:user)
       top_receiver = insert(:user)
@@ -56,6 +56,27 @@ defmodule Corker.Reports.MonthlyTest do
 
       assert [{receiver.username, 1}] == receiver_stats
       assert [{sender.username, 1}] == sender_stats
+    end
+
+    test "backdates to the previous month with the backdate: true flag" do
+      sender = insert(:user)
+      old_receiver = insert(:user)
+      new_receiver = insert(:user)
+      one_month_ago = Timex.now() |> Timex.shift(months: -1)
+
+      _new_high_five =
+        insert(:high_five, receiver_id: new_receiver.id, sender_id: sender.id)
+
+      _old_high_five =
+        insert(:high_five,
+          receiver_id: old_receiver.id,
+          sender_id: sender.id,
+          inserted_at: one_month_ago
+        )
+
+      {_sender_stats, receiver_stats} = Monthly.generate(backdate: true)
+
+      assert [{old_receiver.username, 1}] == receiver_stats
     end
   end
 end

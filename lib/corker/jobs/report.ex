@@ -11,7 +11,7 @@ defmodule Corker.Jobs.Report do
 
   defp generate_report do
     {sender_stats, receiver_stats} =
-      Reports.Monthly.generate() |> to_paragraph()
+      Reports.Monthly.generate(backdate: true) |> to_paragraph()
 
     prefix = Messages.t("reports.monthly.prefix")
     receiver_str = Messages.t("reports.monthly.receiver", stats: receiver_stats)
