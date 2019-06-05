@@ -2,5 +2,21 @@
   "name": "Corker",
   "description": "A Slack bot for praising your team.",
   "repository": "https://github.com/includebraga/corker",
-  "keywords": ["elixir", "slack", "bot"]
+  "keywords": ["elixir", "slack", "bot"],
+  "buildpacks": [
+    {
+      "url": "https://github.com/HashNuke/heroku-buildpack-elixir"
+    }
+  ],
+  "addons": [
+    {
+      "plan": "heroku-postgresql:hobby-dev"
+    }
+  ],
+  "env": {
+    "MIX_ENV": {
+      "description": "Just a mix env",
+      "value": "prod"
+    }
+  }
 }
