@@ -15,9 +15,9 @@ Giving feedback leads to a better workplace. Corker is a Slack bot that listens 
 This is a rough draft of the path the project is taking.
 
 - [x] Send high fives through Slack commands
+- [x] Highest sender & receiver stats
 - [ ] Record reactions from Slack
 - [ ] See a feed of org high fives
-- [ ] Highest sender & receiver stats
 
 You can find the complete feature and task list in the [project Trello
 board][trello].
