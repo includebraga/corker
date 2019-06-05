@@ -6,7 +6,7 @@ Corker is one astonishing boi.
 
 Giving feedback leads to a better workplace. Corker is a Slack bot that listens to your props to other Slack members and records them.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/includebraga/corker)
 
 ![corker in action](docs/images/screenshot.png)
 
