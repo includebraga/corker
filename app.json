@@ -16,7 +16,12 @@
   "env": {
     "MIX_ENV": {
       "description": "Just a mix env",
-      "value": "prod"
+      "value": "prod",
+      "required": true
+    },
+    "SLACK_BOT_OAUTH_TOKEN": {
+      "description": "Slack bot user token. Follow the README for instructions",
+      "required": true
     }
   }
 }
