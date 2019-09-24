@@ -1,5 +1,5 @@
 defmodule Corker.Slack.Actions.HighFive do
-  @cmd_regex ~r/((give|send) ((a high\s*five)|props)) to <@([^>]+)> (.*)/
+  @cmd_regex ~r/<@([^>]+)> <@([^>]+)> (.*)/
 
   alias Corker.Slack.{
     HighFives,

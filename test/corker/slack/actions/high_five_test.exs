@@ -17,7 +17,7 @@ defmodule Corker.Slack.Actions.HighFiveTest do
     test "creates a high five" do
       sender = insert(:user)
       receiver = insert(:user)
-      text = "give a high five to <@#{receiver.slack_id}> for being awesome"
+      text = "<@bot> <@#{receiver.slack_id}> for being awesome"
 
       HighFive.run(%{text: text, user: sender.slack_id})
 
@@ -34,7 +34,7 @@ defmodule Corker.Slack.Actions.HighFiveTest do
       two_weeks_ago = Timex.now() |> Timex.shift(weeks: -2)
       insert(:high_five, receiver_id: receiver.id)
       insert(:high_five, receiver_id: receiver.id, inserted_at: two_weeks_ago)
-      text = "give a high five to <@#{receiver.slack_id}> for being awesome"
+      text = "<@bot> <@#{receiver.slack_id}> for being awesome"
 
       response = HighFive.run(%{text: text, user: sender.slack_id})
 
@@ -49,7 +49,7 @@ defmodule Corker.Slack.Actions.HighFiveTest do
 
     test "warns when the receiver isn't found" do
       sender = insert(:user)
-      text = "give a high five to <@123> for being awesome"
+      text = "<@bot> <@123> for being awesome"
 
       response = HighFive.run(%{text: text, user: sender.slack_id})
 
@@ -63,7 +63,7 @@ defmodule Corker.Slack.Actions.HighFiveTest do
       Application.put_env(:corker, :high_fives, self_fives: false)
 
       sender = insert(:user)
-      text = "give a high five to <@#{sender.slack_id}> for being awesome"
+      text = "<@bot> <@#{sender.slack_id}> for being awesome"
 
       response = HighFive.run(%{text: text, user: sender.slack_id})
 
