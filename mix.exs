@@ -27,7 +27,7 @@ defmodule Corker.MixProject do
     [
       {:ecto_sql, "~> 3.0"},
       {:postgrex, ">= 0.0.0"},
-      {:slack, "~> 0.14.0"},
+      {:slack, "~> 0.19.0"},
       {:timex, "~> 3.1"},
       {:yaml_elixir, "~> 2.2"},
       {:plug_cowboy, "~> 2.0"},
