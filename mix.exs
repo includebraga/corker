@@ -39,7 +39,7 @@ defmodule Corker.MixProject do
 
   defp deps(env) when env in [:dev, :test] do
     [
-      {:credo, "~> 1.1.4", runtime: false},
+      {:credo, "~> 1.2.0", runtime: false},
       {:ex_machina, "~> 2.3"},
       {:faker, "~> 0.11"},
       {:mock, "~> 0.3.0"}
